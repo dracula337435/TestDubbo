@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       ">
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="mr" />
+
+    <!-- zookeeper注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <dubbo:service interface="org.dracula.test2.TestInterface1" ref="testInterface1Impl"/>
+
+    <bean id="testInterface1Impl" class="org.dracula.test2.provider1.TestInterface1Impl" />
+
+</beans>
