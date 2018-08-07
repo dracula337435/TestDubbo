@@ -24,9 +24,17 @@
 ```注意此时函数1失败，2成功，复现症状2后半部分和症状3```  
 至此3个症状均复现
 
-## 初步研究原因
+## 简单解释
 
 1. 针对症状1。对consumer启动成功的标志定义过早，还没到check起作用时，于是就有了check“失效”的表象。  
+
+2. 针对症状2和症状3。dubbo机制本身就是consumer的getBean过程中
+，若check为true，找不到provider，forbidden被置为true，则不再重新找provider；
+，若check为false，找不到provider，会重试
+
+## 具体解释
+
+1. 针对症状1
 具体说明：目前的写法相当于把完整的启动拆成了两个步骤，步骤1初始化spring容器，步骤2手工getBean得到远程代理。
 check在步骤2中起作用，七部的用法中@Autowired相当于使用了getBean。  
 
@@ -45,11 +53,11 @@ check在步骤2中起作用，七部的用法中@Autowired相当于使用了getB
 </bean>
 ```
 
-2. 针对症状2。consumer的getBean过程中
-，若check为true，找不到provider，forbidden被置为true，则不再重新找provider
-，若check为false，找不到provider，会重试
+2. 针对症状2
+TODO
 
 ## 建议
+
 查阅[dubbo官方文档此页](http://dubbo.apache.org/#!/docs/user/demos/preflight-check.md?lang=zh-cn)可得如下信息
 >Dubbo 缺省会在启动时检查依赖的服务是否可用，不可用时会抛出异常，阻止 Spring 初始化完成，以便上线时，能及早发现问题，默认 check="true"。
 
