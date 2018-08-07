@@ -1,12 +1,10 @@
 # 使用dubbo的问题
 
----
-
 此工程做复现问题及探索用
 
 ## 症状：  
-1. provider没有启动，且consumer的check=true，启动consumer不报错，有check“失效”的感觉
-1. 若此时consumer调用一次provider，一定失败，但是此时启动provider，再调用，仍然失败
+1. provider没有启动，且consumer的check为true，启动consumer不报错，有check“失效”的感觉
+1. 若此时consumer调用一次provider，一定失败；但是此时启动provider，再调用，仍然失败
 1. 若此时先不调用，直接启动provider，正常调用
 
 ## 此工程复现上述症状
@@ -24,9 +22,19 @@
 ```注意此时函数1失败，2成功，复现症状2后半部分和症状3```  
 至此3个症状均复现
 
-## 初步研究
-1. 针对症状1。表象是启动成功了，但实际上没有。  
-|部门|启动成功标志|详细说明|  
-|-|-|-|  
-|二部|  
-|七部|  
+## 初步研究原因
+1. 针对症状1。对consumer启动成功的标志定义过早，还没到check起作用时，于是就有了check“失效”的表象。  
+具体说明：目前的写法相当于把完整的启动拆成了两个步骤，步骤1初始化spring容器，步骤2手工getBean得到远程代理。
+check在步骤2中起作用，七部的用法中@Autowired相当于使用了getBean。  
+
+|不同用法启动成功的标志|
+|:---:|
+
+|     | 步骤1 | 步骤2（check起作用） |
+|:---:|:----:|:------------------:|
+| 二部的 | √ | × |
+| 七部的 | √ | √ |
+
+2. 针对症状2。consumer的getBean过程中
+，若check为true，找不到provider，forbidden被置为true，则不再重新找provider
+，若check为false，找不到provider，会重试
