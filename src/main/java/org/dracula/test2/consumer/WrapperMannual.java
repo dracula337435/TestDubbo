@@ -8,6 +8,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
+/**
+ * @author dk
+ */
 @ManagedResource
 public class WrapperMannual implements ApplicationContextAware {
 

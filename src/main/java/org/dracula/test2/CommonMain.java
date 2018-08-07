@@ -3,6 +3,9 @@ package org.dracula.test2;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * @author dk
+ */
 abstract public class CommonMain {
 
     public static void fun(String... configLocations){

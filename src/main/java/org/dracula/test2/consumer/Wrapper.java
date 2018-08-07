@@ -3,6 +3,9 @@ package org.dracula.test2.consumer;
 import org.dracula.test2.TestInterface1;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * @author dk
+ */
 public class Wrapper {
 
     @Autowired
