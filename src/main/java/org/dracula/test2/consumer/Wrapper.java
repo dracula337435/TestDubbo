@@ -2,15 +2,19 @@ package org.dracula.test2.consumer;
 
 import org.dracula.test2.TestInterface1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.export.annotation.ManagedOperation;
+import org.springframework.jmx.export.annotation.ManagedResource;
 
 /**
  * @author dk
  */
+@ManagedResource
 public class Wrapper {
 
     @Autowired
     private TestInterface1 testInterface1;
 
+    @ManagedOperation
     public void test(){
         System.out.println(testInterface1.sayHello("gxk"));
     }
