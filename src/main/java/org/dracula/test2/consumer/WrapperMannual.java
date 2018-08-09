@@ -26,7 +26,7 @@ public class WrapperMannual implements ApplicationContextAware {
         try {
             TestInterface1 testInterface1 = applicationContext.getBean(TestInterface1.class);
             System.out.println(testInterface1.sayHello("gxk"));
-        } catch (BeansException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +36,7 @@ public class WrapperMannual implements ApplicationContextAware {
         try {
             TestInterface2 testInterface2 = applicationContext.getBean(TestInterface2.class);
             System.out.println(testInterface2.sayHello("gxk"));
-        } catch (BeansException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

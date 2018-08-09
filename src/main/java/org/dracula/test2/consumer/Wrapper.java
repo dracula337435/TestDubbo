@@ -16,7 +16,13 @@ public class Wrapper {
 
     @ManagedOperation
     public void test(){
-        System.out.println(testInterface1.sayHello("gxk"));
+        String sayHello = null;
+        try {
+            sayHello = testInterface1.sayHello("gxk");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(sayHello);
     }
 
     public TestInterface1 getTestInterface1() {
