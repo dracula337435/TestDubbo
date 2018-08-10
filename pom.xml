@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>
+
     <groupId>org.dracula</groupId>
     <artifactId>test2</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -11,9 +17,8 @@
     <properties>
         <!-- 1.2.3，01-Apr-2017 -->
         <logback.version>1.2.3</logback.version>
-        <spring.version>5.0.2.RELEASE</spring.version>
         <!--2.6.2，05-Jun-2018-->
-        <dubbo.version>2.6.0</dubbo.version>
+        <dubbo.version>2.5.4</dubbo.version>
         <zk.version>3.4.10</zk.version>
         <zkclient.version>0.10</zkclient.version>
         <java.version>1.8</java.version>
@@ -29,6 +34,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
@@ -37,12 +47,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
