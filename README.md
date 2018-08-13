@@ -76,7 +76,7 @@ check在步骤2中起作用，与之形成对比的是七部的用法，使用@A
 由此可进一步断定问题出在getBean时
 
 2. 针对症状2和症状3  
-症状2和症状3的最重要区别在于provider启动前是否调用了getBean()，对症状1的分析可说明这个区别造成的影响，检查provider是否可用发生在调用getBean()时，症状2前半部分在provider不可用时调用getBean()，抛出异常。  
+症状2和症状3的最重要区别在于provider启动前是否调用了getBean()，根据对症状1的分析，检查provider是否可用发生在调用getBean()时，症状2前半部分在provider不可用时调用getBean()，抛出异常；而症状3在provider可用时调用，顺利制作出远程代理。  
 源码（dubbo的ReferenceConfig类，406行）简写如下
 ```
     if(check 且 provider不可用){
