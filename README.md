@@ -113,7 +113,7 @@ check在步骤2中起作用，与之形成对比的是七部的用法，使用@A
 >另外，如果你的 Spring 容器是懒加载的，或者通过 API 编程延迟引用服务，请关闭 check，否则服务临时不可用时，会抛出异常，拿到 null 引用，如果 check="false"，总是会返回引用，当服务恢复时，能自动连上。
 
 二部的情况为第三段“通过 API 编程延迟引用服务”  
-同时根据试验，建议将check置为false，可使用一下3种方式：
+同时根据试验，建议将check置为false，可使用以下3种方式：
 1. 在每个<dubbo:reference>标签中配置check为false
 1. 在<dubbo:consumer>标签中设置check属性，同时注意consumer标签的设置可被reference标签覆盖
 1. 在java启动命令中增加参数-Ddubbo.reference.check=false，同时注意此参数不可被reference标签覆盖，与方法2的“可被reference标签覆盖”不同
