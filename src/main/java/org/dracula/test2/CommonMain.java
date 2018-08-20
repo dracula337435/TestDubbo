@@ -1,5 +1,6 @@
 package org.dracula.test2;
 
+import com.alibaba.dubbo.container.Main;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -21,6 +22,11 @@ abstract public class CommonMain {
             }
         }
         ac.close();
+    }
+
+    public static void useDubboContainer(String configLocation){
+        System.setProperty("dubbo.spring.config", configLocation);
+        Main.main(null);
     }
 
 }
