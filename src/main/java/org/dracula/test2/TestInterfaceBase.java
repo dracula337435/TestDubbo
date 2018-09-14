@@ -7,7 +7,7 @@ package org.dracula.test2;
 public interface TestInterfaceBase {
 
     /**
-     * 接口1的测试方法，啥也没干
+     * 测试方法，啥也没干
      * @param name
      * @return
      */
